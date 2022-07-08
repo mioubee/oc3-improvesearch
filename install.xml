@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Improved Product Search - Trim and Dash</name>
+    <code>Improved Product Search - Trim and Dash</code>
+    <version>1.4</version>
+    <author>Chipmunk</author>
+    <link>http://www.fun-in.com.tw/</link>
+    <file path="catalog/controller/journal3/search.php">
+        <operation error="log" info="Improved product search journel">
+            <search><![CDATA[$search = Arr::get($this->request->get, 'search');]]></search>
+            <add position="after"><![CDATA[
+                //chip: trim the space
+                $search = trim($search);
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/product/search.php">
+        <operation error="log" info="Improved product search product1">
+            <search><![CDATA['filter_name'         => $search,]]></search>
+            <add position="replace"><![CDATA['filter_name'         => trim($search),]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/product/search.php">
+        <operation error="log" info="Improved product search product2">
+            <search><![CDATA['filter_tag'          => $tag,]]></search>
+            <add position="replace"><![CDATA['filter_tag'          => trim($tag),]]></add>
+        </operation>
+    </file>
+
+</modification>
